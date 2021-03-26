@@ -10,7 +10,8 @@ func ExampleNewMemoryBloomFilter() {
 	var bloom BloomFilter = NewMemoryBloomFilter(10000)
 	bs := []byte("bloom")
 	_ = bloom.Put(bs)
-	fmt.Println(bloom.MightContain(bs))
+	exists, err := bloom.MightContain(bs)
+	fmt.Println(exists, err)
 }
 
 func ExampleNewRedisBloomFilter() {
@@ -23,5 +24,6 @@ func ExampleNewRedisBloomFilter() {
 	var bloom BloomFilter = NewRedisBloomFilter(cli, "test", 10000)
 	bs := []byte(key)
 	_ = bloom.Put(bs)
-	fmt.Println(bloom.MightContain(bs))
+	exists, err := bloom.MightContain(bs)
+	fmt.Println(exists, err)
 }
