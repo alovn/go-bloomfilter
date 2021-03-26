@@ -5,6 +5,7 @@ import (
 	"hash/fnv"
 )
 
+// BloomFilter interface define
 type BloomFilter interface {
 	Put([]byte)
 	MightContain([]byte) bool
@@ -16,7 +17,8 @@ type memeryBloomFilter struct {
 	hashFuncs []func([]byte) uint64
 }
 
-func NewByteBloomFilter(size uint64) BloomFilter {
+// NewMemoryBloomFilter implementation with memory
+func NewMemoryBloomFilter(size uint64) BloomFilter {
 	return &memeryBloomFilter{
 		len:       size,
 		bits:      make([]uint64, size),
