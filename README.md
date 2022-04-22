@@ -4,7 +4,7 @@ A simple and high-performance Bloom filter written in golang.
 
 Support memory storage and redis.
 
-## Example
+## Examples
 
 ### MemoryBloomFilter
 
