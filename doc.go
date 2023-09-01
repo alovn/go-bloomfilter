@@ -18,7 +18,7 @@ RedisBloomFilter:
 		DB:       0,
 	})
 	key := "redis bloomfilter"
-	bloom := bloomfilter.NewRedisBloomFilter(cli, "test", 10000)
+	bloom := bloomfilter.NewRedisBloomFilter(cli, "test", 1000000)
 	bs := []byte(key)
 	_ = bloom.Put(bs)
 	exists, err := bloom.MightContain(bs)

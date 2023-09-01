@@ -9,7 +9,7 @@ import (
 
 func TestByteBloomFilter_MightContain(t *testing.T) {
 	var bloom BloomFilter = NewMemoryBloomFilter(10000)
-	rand.Seed(time.Hour.Nanoseconds())
+	rand := rand.New(rand.NewSource(int64(time.Now().Nanosecond())))
 	for i := 0; i < 10000; i++ {
 		key := fmt.Sprintf("%d", rand.Int63())
 		bs := []byte(key)

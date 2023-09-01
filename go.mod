@@ -2,4 +2,4 @@ module github.com/alovn/go-bloomfilter
 
 go 1.16
 
-require github.com/go-redis/redis/v8 v8.11.5
+require github.com/redis/go-redis/v9 v9.1.0
