@@ -8,6 +8,9 @@ type memeryBloomFilter struct {
 
 // NewMemoryBloomFilter implementation with memory
 func NewMemoryBloomFilter(size uint64) BloomFilter {
+	if size <= 0 {
+		size = 10000
+	}
 	return &memeryBloomFilter{
 		len:       size,
 		bits:      make([]uint64, size),

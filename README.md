@@ -22,17 +22,32 @@ exists,err := bloom.MightContain(bs)
 ```go
 import bloomfilter "github.com/alovn/go-bloomfilter"
 
-cli := redis.NewClient(&redis.Options{
+rdb := redis.NewClient(&redis.Options{
     Addr:     "127.0.0.1:6379",
     Password: "",
     DB:       0,
 })
+defer rdb.Close()
 
 key := "redis bloomfilter"
 
-bloom := bloomfilter.NewRedisBloomFilter(cli, "test", 10000)
+bloom := bloomfilter.NewRedisBloomFilter(rdb, "test", 1000000)
 
 bs := []byte(key)
 _ = bloom.Put(bs)
 exists, err := bloom.MightContain(bs)
+```
+
+redis cluster:
+
+```go
+rdb := redis.NewClusterClient(&redis.ClusterOptions{
+    Addrs: []string{
+        "127.0.0.1:6371",
+        "127.0.0.1:6372",
+        "127.0.0.1:6373",
+    },
+    Password: "1234",
+})
+bloom := bloomfilter.NewRedisBloomFilter(rdb, "test", 1000000)
 ```
